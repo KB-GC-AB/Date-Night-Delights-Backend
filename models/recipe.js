@@ -3,7 +3,7 @@ const {mongoose} = require('./connection.js')
 ///////////////////////////////
 // MODELS
 ////////////////////////////////
-const RecipeSchema = mongoose.Schema({
+const RecipeSchema = new mongoose.Schema({
     name: String,
     image: String,
     ingredients: String,
@@ -11,3 +11,5 @@ const RecipeSchema = mongoose.Schema({
 })
 
 const Recipe = mongoose.model('Recipe', RecipeSchema)
+
+module.exports = Recipe
