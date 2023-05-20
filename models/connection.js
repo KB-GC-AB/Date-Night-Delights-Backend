@@ -1,12 +1,21 @@
-require("dotenv").config()
-const { MONGODB_URL } = process.env
-const mongoose = require("mongoose")
 
-mongoose.connect(MONGODB_URL)
+// import mongoose
+const mongoose = require('mongoose')
 
-mongoose.connection
-    .on('open', () =>  console.log("you are connected"))
-    .on('close', () => console.log("you are disconneted"))
-    .on('error', (error) => console.log(error))
+// mongoose connect to url
+mongoose.connect(process.env.DATABASE_URL);
 
-    mongoose.exports = mongoose
+mongoose.connection.on("connected", () => {
+    console.log("Mongoose connected to mongoDB")
+})
+
+mongoose.connection.on("error", (error) => {
+    console.log("mongoDB Connection Error:", error)
+})
+
+mongoose.connection.on("disconnected", () => {
+    console.log("mongoDB disconnected")
+})
+
+// export mongoose 
+module.exports = { mongoose }

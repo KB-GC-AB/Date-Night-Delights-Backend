@@ -8,11 +8,13 @@ const app = express();
 // import middlware
 const cors = require("cors");
 const morgan = require("morgan");
+const recipesRouter = require("./controllers/recipe")
 
 // MiddleWare
 app.use(cors()); // to prevent cors errors, open access to all origins
 app.use(morgan("dev")); // logging
 app.use(express.json()); // parse json bodies
+app.use("/recipes", recipesRouter)
 
 // ROUTES
 //test route
