@@ -8,12 +8,14 @@ const app = express();
 // import middlware
 const cors = require("cors");
 const morgan = require("morgan");
-const recipesRouter = require("./controllers/recipe")
+const recipesRouter = require("./controllers/recipe");
+const bodyParser = require("body-parser");
 
 // MiddleWare
 app.use(cors()); // to prevent cors errors, open access to all origins
 app.use(morgan("dev")); // logging
-app.use(express.json()); // parse json bodies
+app.use(bodyParser.json({limit:"200mb"}))
+// app.use(express.json()); // parse json bodies
 app.use("/recipes", recipesRouter)
 
 // ROUTES
